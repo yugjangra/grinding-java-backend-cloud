@@ -7,15 +7,12 @@ class BankAccount{
      public void setBalance(double balance){
         this.balance = balance;
      }
-}
-    public void deposit(double amount){
-        BankAccount BA = new BankAccount();
 
-         BA.setBalance(balance + amount);
+    public void deposit(double amount){
+         setBalance(balance + amount);
     }
     public void withdraw(double amount){
-        BankAccount BA = new BankAccount();
-        BA.setBalance(balance - amount);
+        setBalance(balance - amount);
     }
     public static void main(String[] args){
         double amount;
