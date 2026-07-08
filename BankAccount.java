@@ -7,6 +7,9 @@ class BankAccount{
      public void setBalance(double balance){
         this.balance = balance;
      }
+     BankAccount(double initialbalance){
+        this.balance = initialbalance;
+     }
 
     public void deposit(double amount){
          setBalance(balance + amount);
@@ -17,7 +20,7 @@ class BankAccount{
     public static void main(String[] args){
         double amount;
         Scanner sc = new Scanner(System.in);
-        BankAccount BA = new BankAccount();
+        BankAccount BA = new BankAccount(500);
         while(true){
         System.out.println("withdraw or deposit or check balance(cb)");
         String choice = sc.nextLine();
@@ -61,3 +64,4 @@ class BankAccount{
 }
 //Encapsulation - accessing private data using methods with the help of getters and setters
 //Made the variable(balance) private 
+//Contructor(used to give multiple values to an object) - provided an initial balance 
