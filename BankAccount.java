@@ -12,17 +12,17 @@ class BankAccount{
      }
 
     public void deposit(double amount){
-         setBalance(balance + amount);
+         setBalance(this.balance + amount);
     }
     public void withdraw(double amount){
-        setBalance(balance - amount);
+        setBalance(this.balance - amount);
     }
     public static void main(String[] args){
         double amount;
         Scanner sc = new Scanner(System.in);
-        BankAccount BA = new BankAccount(500);
+        SavingsAccount BA = new SavingsAccount(500);
         while(true){
-        System.out.println("withdraw or deposit or check balance(cb)");
+        System.out.println("withdraw or deposit or check balance(cb) or interest");
         String choice = sc.nextLine();
         if(choice.equals("cb")){
             System.out.println("Balance:" + BA.getBalance()); 
@@ -39,6 +39,10 @@ class BankAccount{
         amount = sc.nextDouble();
         sc.nextLine();
         BA.withdraw(amount);
+        }
+        else if(choice.equals("interest")){
+            BA.addInterest(); 
+            System.out.println("Balance with interest: " + BA.getBalance());
         }
         else{
             System.out.println("Invalid Choice");
@@ -65,3 +69,14 @@ class BankAccount{
 //Encapsulation - accessing private data using methods with the help of getters and setters
 //Made the variable(balance) private 
 //Contructor(used to give multiple values to an object) - provided an initial balance 
+// Inheritance(used to use methods of one class into another class)- Implementing savings account
+ class SavingsAccount extends BankAccount{
+    SavingsAccount(double initialbalance){
+        super(initialbalance);
+    }
+    public void addInterest(){
+        double extra;
+        extra = (this.getBalance() * (0.05));
+        this.setBalance(this.getBalance() + extra);
+    }
+}
