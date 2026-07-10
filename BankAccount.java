@@ -35,6 +35,7 @@ class BankAccount{
         System.out.println("Balance: " + BA.getBalance());
         }
         else if(choice.equals("withdraw")){
+            
         System.out.println("Enter amount to withdraw: ");
         amount = sc.nextDouble();
         sc.nextLine();
@@ -79,4 +80,13 @@ class BankAccount{
         extra = (this.getBalance() * (0.05));
         this.setBalance(this.getBalance() + extra);
     }
+    @Override
+        public void withdraw(double amount){
+            if(this.getBalance() - amount <100){
+                System.out.println("A minimum balance of 100");
+            }
+            else{
+                super.withdraw(amount);
+            }
+        }
 }
