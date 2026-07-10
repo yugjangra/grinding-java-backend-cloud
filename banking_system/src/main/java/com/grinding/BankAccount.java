@@ -10,7 +10,7 @@ class BankAccount{
         this.balance = balance;
      }
      BankAccount(double initialbalance){
-        this.balance = initialbalance;
+        this.balance = initialbalance;""
      }
 
     public void deposit(double amount){
