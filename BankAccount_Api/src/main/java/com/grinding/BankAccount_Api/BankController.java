@@ -11,7 +11,7 @@ import com.grinding.BankAccount_Api.BankAccount.SavingsAccount;
 public class BankController {
     SavingsAccount Account = new SavingsAccount(500.0);
 
-    @GetMapping("/api/welcome")
+    @GetMapping("/api/BANKING_SYSTEM")
     public String welcome() {
         return "Welcome to the Bank API! The server is successfully running.";
     }
