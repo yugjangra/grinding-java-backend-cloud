@@ -11,3 +11,4 @@ public class BankAccountApiApplication {
 	}
 
 }
+//SpringBootApplication class is the main class of the code as it contains the main fuction which can only be one in the whole directory.
