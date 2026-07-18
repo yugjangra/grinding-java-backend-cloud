@@ -2,6 +2,7 @@ package com.potato.JournalApp.entity;
 
 public class JournalEntry {
     private long id;
+    private String name;
 
     private String title;
 
