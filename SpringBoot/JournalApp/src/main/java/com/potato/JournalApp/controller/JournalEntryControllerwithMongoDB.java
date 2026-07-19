@@ -1,11 +1,9 @@
 package com.potato.JournalApp.controller;
 import com.potato.JournalApp.entity.JournalEntry;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,34 +12,37 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.potato.JournalApp.service.*;
 
 @RestController
-@RequestMapping("/_journal")
-public class JournalEntryController {
-    private Map<String, JournalEntry> journalentries = new HashMap<>();
+@RequestMapping("/journal")
+public class JournalEntryControllerwithMongoDB {
+
+@Autowired
+public JournalEntryService JournalEntryService;
 
 @GetMapping
 public List<JournalEntry> getAll() {
-    return new ArrayList<>(journalentries.values());
+    return null;
 }
 
 @PostMapping
-public String createEntry(@RequestBody JournalEntry entry1){
-    journalentries.put(entry1.getId(), entry1); 
-    return "got it";
+public Boolean createEntry(@RequestBody JournalEntry entry1){
+    JournalEntryService.saveEntry(entry1);
+    return true;
 
 }
 @GetMapping("id/{myid}")
 public JournalEntry getmyentriesusingid(@PathVariable Long myid){
-    return journalentries.get(myid);
+    return null;
 
 }
 @DeleteMapping("id/{myid}")
 public JournalEntry deletemyentriesusingid(@PathVariable Long myid){
-   return journalentries.remove(myid);
+   return null;
 }
 @PutMapping("id/{myid}")
-public JournalEntry editentry(@PathVariable String myid, @RequestBody JournalEntry entry1){
-    return journalentries.put(myid, entry1);
+public JournalEntry editentry(@PathVariable long myid, @RequestBody JournalEntry entry1){
+    return null;
 }
 }
