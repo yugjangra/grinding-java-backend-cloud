@@ -1,8 +1,10 @@
 package com.potato.JournalApp.controller;
 import com.potato.JournalApp.entity.JournalEntry;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,26 +25,36 @@ public JournalEntryService JournalEntryService;
 
 @GetMapping
 public List<JournalEntry> getAll() {
-    return null;
+    return JournalEntryService.getAll();
 }
 
 @PostMapping
-public Boolean createEntry(@RequestBody JournalEntry entry1){
+public JournalEntry createEntry(@RequestBody JournalEntry entry1){
+    entry1.setDate(LocalDateTime.now());
     JournalEntryService.saveEntry(entry1);
-    return true;
+    return entry1;
 
 }
 @GetMapping("id/{myid}")
-public JournalEntry getmyentriesusingid(@PathVariable Long myid){
-    return null;
+public JournalEntry getmyentriesusingid(@PathVariable ObjectId myid){
+   return JournalEntryService.findbyId(myid).orElse(null);
 
 }
 @DeleteMapping("id/{myid}")
-public JournalEntry deletemyentriesusingid(@PathVariable Long myid){
-   return null;
+public Boolean deletemyentriesusingid(@PathVariable ObjectId myid){
+   JournalEntryService.deletebyId(myid);
+   return true;
+   
 }
 @PutMapping("id/{myid}")
-public JournalEntry editentry(@PathVariable long myid, @RequestBody JournalEntry entry1){
-    return null;
+public JournalEntry editentry(@PathVariable ObjectId myid, @RequestBody JournalEntry newentry1){
+    
+    JournalEntry oldentry = JournalEntryService.findbyId(myid).orElse(null);
+    if(oldentry != null){
+        oldentry.setTitle(newentry1.getTitle() != null && !newentry1.getTitle().equals("") ? newentry1.getTitle() : oldentry.getTitle());
+        oldentry.setContent(newentry1.getContent() != null && !newentry1.getContent().equals("") ? newentry1.getContent() : oldentry.getContent());
+    }
+    JournalEntryService.saveEntry(oldentry);
+    return oldentry;
 }
 }

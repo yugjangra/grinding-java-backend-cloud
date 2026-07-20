@@ -1,24 +1,26 @@
 package com.potato.JournalApp.entity;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import java.util.Date;
+
+import java.time.LocalDateTime;
 
 @Document
 public class JournalEntry {
     @Id
-    private String id;
+    private ObjectId id;
 
     private String title;
 
     private String content;
 
-    private Date date;
+    private LocalDateTime date;
 //Getters And Setters(Encapsulation)
-    public String getId(){
+    public ObjectId getId(){
         return id;
     }
-    public void setId(String id){
+    public void setId(ObjectId id){
         this.id = id;
     }
 
@@ -35,10 +37,10 @@ public class JournalEntry {
     public void setContent(String content){
         this.content = content;
     }
-    public Date getdate(){
+    public LocalDateTime getdate(){
         return date; 
     }
-    public void setDate(Date date){
+    public void setDate(LocalDateTime date){
         this.date = date;
     }
 }

@@ -27,7 +27,7 @@ public List<JournalEntry> getAll() {
 
 @PostMapping
 public String createEntry(@RequestBody JournalEntry entry1){
-    journalentries.put(entry1.getId(), entry1); 
+    journalentries.get(entry1); 
     return "got it";
 
 }
